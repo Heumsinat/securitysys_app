@@ -1,0 +1,85 @@
+<!--
+  Generated template for the NonAppointmentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>NonAppointment</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid >
+    <ion-item class="form1">
+      <ion-label>អត្តសញ្ញាណប័ណ្ឌ/Identity card</ion-label>
+      <ion-input type="text"  [(ngModel)]="Data.IC"></ion-input>
+    </ion-item>
+    <ion-item class="form1">
+      <ion-label>ឈ្មោះ/Name</ion-label>
+      <ion-input type="text"  [(ngModel)]="Data.Name"></ion-input>
+    </ion-item>
+    <ion-item class="form1">
+        <ion-label>Come By</ion-label>
+        <ion-select  interface="popover" [(ngModel)]="Data.Comeby" (ionChange)="onChange(Data.Comeby)">
+            <ion-option value="walk" selected="true">ថ្មើរជើង/Walk</ion-option>
+            <ion-option  value="moto">ម៉ូតូ/Moto</ion-option>
+            <ion-option  value="car">ឡានតូច/Car</ion-option>
+            <ion-option value="truck">ឡានកុងទីន័រ/Truck</ion-option>
+            <ion-option value="other">ផ្សេងៗ/Other</ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item class="form1">
+        <ion-label>Purpose</ion-label>
+        <ion-select interface="popover" [(ngModel)]="Data.Purpose" >
+            <ion-option value="recieve" selected="true">Recieve F/G</ion-option>
+            <ion-option value="Send">Send Fabric</ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item class="form1" >
+        <ion-label>Contact Person</ion-label>
+        <ion-input type="text"  [(ngModel)]="Data.ContactPerson"></ion-input>
+      </ion-item>
+
+      <ion-item class="form1" *ngIf="ifMoto == true">
+        <ion-label>Plate No</ion-label>
+        <ion-input type="text"  [(ngModel)]="Data.PlateNo"></ion-input>
+      </ion-item>
+      <ion-item class="form1" *ngIf="ifTruck == true">
+        <ion-label>Driver Name</ion-label>
+        <ion-input type="text"  [(ngModel)]="Data.DriverName"></ion-input>
+      </ion-item>
+      <ion-item class="form1" *ngIf="ifTruck == true">
+        <ion-label>Seal No</ion-label>
+        <ion-input type="text"  [(ngModel)]="Data.SealNo"></ion-input>
+      </ion-item>
+      <ion-item class="form1" *ngIf="ifTruck == true">
+        <ion-label>No of Carton</ion-label>
+        <ion-input type="text"  [(ngModel)]="Data.NoCarton"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Data QR Code" [(ngModel)]="qrData" ></ion-input>
+      </ion-item>
+      <div class="btn02">
+        <button ion-button block (click)="createCode()">Create Code</button>
+        <button ion-button block (click)="scanCode()">scan</button>
+      </div> 
+      <ion-card *ngIf="createdCode">
+        <!-- <ngx-qrcode [(qrc-value)]="createdCode"></ngx-qrcode> -->
+        <ion-card-content>
+          <p>Value: {{createdCode}}</p>
+        </ion-card-content>
+      </ion-card>
+      <ion-card *ngIf="scannedCode">
+        <ion-card-content>
+          Result from Scan: {{scannedCode}}
+        </ion-card-content>
+      </ion-card>
+     
+      
+    <div class="btn02">
+      <button ion-button block (click)="Save()">Save</button>
+    </div>   
+  </ion-grid>
+</ion-content>

@@ -4,27 +4,44 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { AppointmentPage } from '../pages/appointment/appointment';
+import { NonAppointmentPage } from '../pages/non-appointment/non-appointment';
+import { ServicesProvider } from '../providers/services/services';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    AppointmentPage,
+    NonAppointmentPage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    AppointmentPage,
+    NonAppointmentPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ServicesProvider,
+    BarcodeScanner,
   ]
 })
 export class AppModule {}
