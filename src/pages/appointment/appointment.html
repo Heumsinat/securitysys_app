@@ -11,5 +11,16 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-grid *ngIf="infoID == 'root'">
+    <ion-list  class="form1" >
+        <ion-item *ngFor="let item of items"  (click)="Detail(item)">
+          <ion-row>
+            <ion-col>{{ item.company }}</ion-col>
+              <ion-col>{{ item.contact }}</ion-col>
+              <ion-col>{{ item.time | date: 'H:mm' }}</ion-col>
+              <ion-col>{{ item.DateGrow | date }}</ion-col>
+          </ion-row>
+        </ion-item>
+    </ion-list>
+  </ion-grid>
 </ion-content>
