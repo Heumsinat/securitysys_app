@@ -17,7 +17,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
   templateUrl: 'non-appointment.html',
 })
 export class NonAppointmentPage {
-  public Data = { IC:"", Name:"", Comeby:"", Purpose:"", ContactPerson:""};
+  public Data = { IC:"", Name:"", Comeby:"", Purpose:"", ContactPerson:"",Code:""};
   responseData : any;
   public ifMoto: boolean = false;
   public ifTruck: boolean = false;
@@ -41,15 +41,16 @@ export class NonAppointmentPage {
   }
 
   Save(){
-    this.service.postData(this.Data,'/saveattendance').then((result) => {
-    this.responseData = result;
-    console.log("this.responseData===", this.responseData);
-    if(result){
-      this.navCtrl.popToRoot();
-    }
-   }, (err) => {
-      // console.log(err);
-   });
+    console.log("test Data=", this.Data);
+  //   this.service.postData(this.Data,'/saveattendance').then((result) => {
+  //   this.responseData = result;
+  //   console.log("this.responseData===", this.responseData);
+  //   if(result){
+  //     this.navCtrl.popToRoot();
+  //   }
+  //  }, (err) => {
+  //     // console.log(err);
+  //  });
   }
 
   onChange(value){
@@ -73,6 +74,7 @@ export class NonAppointmentPage {
 
       console.log("this.scannedCode =",barcodeData);
       this.scannedCode = barcodeData.text;
+      this.Data.Code = this.scannedCode;
     }, (err) => {
       console.log("Error occured : " + err);
     });     

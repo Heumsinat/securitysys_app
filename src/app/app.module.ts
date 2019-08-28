@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AppointmentPage } from '../pages/appointment/appointment';
 import { NonAppointmentPage } from '../pages/non-appointment/non-appointment';
+import { CheckoutPage } from '../pages/checkout/checkout';
 import { ServicesProvider } from '../providers/services/services';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,7 +22,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     MyApp,
     HomePage,
     AppointmentPage,
-    NonAppointmentPage
+    NonAppointmentPage,
+    CheckoutPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     MyApp,
     HomePage,
     AppointmentPage,
-    NonAppointmentPage
+    NonAppointmentPage,
+    CheckoutPage
   ],
   providers: [
     StatusBar,

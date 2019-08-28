@@ -56,8 +56,8 @@
       <div class="btn02" *ngIf ="!scannedCode">
         <button ion-button block (click)="scanCode()">scan</button>
       </div> 
-      <ion-item class="form1" *ngIf="scannedCode">
-        <ion-label>Result from Scan: {{scannedCode}}</ion-label>
+      <ion-item class="form1" *ngIf="scannedCode" [(ngModel)]="Data.Code" >
+        <ion-label >Result from Scan: {{scannedCode}}</ion-label>
         <ion-input >{{scannedCode}}</ion-input>
       </ion-item>
       <!-- <ion-card *ngIf="scannedCode">
