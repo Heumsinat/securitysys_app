@@ -56,8 +56,10 @@ export class NonAppointmentPage {
     console.log("test val =", value)
     if(value == "moto"){
       this.ifMoto = true;
+      this.ifTruck = false;
     }else if (value == "truck"){
       this.ifTruck = true;
+      this.ifMoto = false;
     }
     console.log("this.ifMoto =",this.ifMoto);
     console.log("this.ifTruck =",this.ifTruck);
@@ -75,14 +77,5 @@ export class NonAppointmentPage {
       console.log("Error occured : " + err);
     });     
   }
-  createCode(){
-    this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE,this.qrData).then((encodedData) => {
-
-        console.log("this.createdCode =",encodedData);
-        this.createdCode = encodedData;
-
-    }, (err) => {
-        console.log("Error occured : " + err);
-    });                 
-}
+  
 }

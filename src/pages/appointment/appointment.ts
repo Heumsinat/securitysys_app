@@ -22,7 +22,15 @@ let apiUrl = 'http://178.128.100.177/securitysys';
 export class AppointmentPage {
   public infoID;
   items: any = [];
-  public Data = { id:"", company:"", purpose_id:"",time:"" , date:"", contact:"", department:"",inf_tel:"", reason:"", finish:""};
+  data:any;
+  responseData : any;
+  public ifMoto: boolean = false;
+  public ifTruck: boolean = false;
+  options :BarcodeScannerOptions;
+  qrData= null;
+  createdCode = null;
+  scannedCode = null;
+  public Data = { id:"", company:"", purpose_id:"",time:"" , date:"", contact:"", department:"",inf_tel:"", reason:"", finish:"",IC:"", Name:"", Comeby:"", Purpose:""};
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -31,6 +39,8 @@ export class AppointmentPage {
     private barcodeScanner: BarcodeScanner) {
       typeof this.navParams.get('infoID') == 'undefined' ? this.infoID = 'root' : this.infoID = this.navParams.get('infoID');
       this.getAppointment();
+      this.data = navParams.get('item');
+      console.log ("test data=",this.data);
   }
 
   ionViewDidLoad() {
@@ -45,6 +55,37 @@ export class AppointmentPage {
     },(err) => {
       // console.log(err);
     });
+  }
+
+  Detail(item){
+    this.navCtrl.push(
+      AppointmentPage, {
+       infoID: 'C1',
+       item: item   
+    });
+  }
+
+  onChange(value){
+    console.log("test val =", value)
+    if(value == "moto"){
+      this.ifMoto = true;
+      this.ifTruck = false;
+    }else if (value == "truck"){
+      this.ifTruck = true;
+      this.ifMoto = false;
+    }
+    console.log("this.ifMoto =",this.ifMoto);
+    console.log("this.ifTruck =",this.ifTruck);
+  }
+
+  scanCode(){
+    this.barcodeScanner.scan(this.options).then((barcodeData) => {
+
+      console.log("this.scannedCode =",barcodeData);
+      this.scannedCode = barcodeData.text;
+    }, (err) => {
+      console.log("Error occured : " + err);
+    });     
   }
 
 }

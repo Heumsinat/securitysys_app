@@ -15,12 +15,70 @@
     <ion-list  class="form1" >
         <ion-item *ngFor="let item of items"  (click)="Detail(item)">
           <ion-row>
-            <ion-col>{{ item.company }}</ion-col>
-              <ion-col>{{ item.contact }}</ion-col>
-              <ion-col>{{ item.time | date: 'H:mm' }}</ion-col>
-              <ion-col>{{ item.DateGrow | date }}</ion-col>
+            <ion-col> Company: {{ item.company }}</ion-col>
+              <ion-col>Contact: {{ item.contact }}</ion-col>
+              <ion-col>Time: {{ item.time }}</ion-col>
+              <ion-col>Date: {{ item.date | date }}</ion-col>
           </ion-row>
         </ion-item>
     </ion-list>
+  </ion-grid>
+
+  <ion-grid *ngIf="infoID == 'C1'">
+    <ion-item class="form1">
+      <ion-input type="text" placeholder="អត្តសញ្ញាណប័ណ្ឌ/Identity card" [(ngModel)]="data.IC"></ion-input>
+    </ion-item>
+    <ion-item class="form1">
+      <ion-input type="text" placeholder="ឈ្មោះ/Name"  [(ngModel)]="data.Name"></ion-input>
+    </ion-item>
+    <ion-item class="form1">
+        <ion-label>Come By</ion-label>
+        <ion-select  interface="popover" [(ngModel)]="data.Comeby" (ionChange)="onChange(Data.Comeby)">
+            <ion-option value="walk" selected="true">ថ្មើរជើង/Walk</ion-option>
+            <ion-option  value="moto">ម៉ូតូ/Moto</ion-option>
+            <ion-option  value="car">ឡានតូច/Car</ion-option>
+            <ion-option value="truck">ឡានកុងទីន័រ/Truck</ion-option>
+            <ion-option value="other">ផ្សេងៗ/Other</ion-option>
+          </ion-select>
+      </ion-item>
+      
+      <ion-item class="form1" *ngIf="ifMoto == true">
+        <ion-input type="text" placeholder="Plate No" [(ngModel)]="Data.PlateNo"></ion-input>
+      </ion-item>
+      <ion-item class="form1" *ngIf="ifTruck == true">
+        <ion-input type="text" placeholder="Driver Name"  [(ngModel)]="Data.DriverName"></ion-input>
+      </ion-item>
+      <ion-item class="form1" *ngIf="ifTruck == true">
+        <ion-input type="text" placeholder="Seal No" [(ngModel)]="Data.SealNo"></ion-input>
+      </ion-item>
+      <ion-item class="form1" *ngIf="ifTruck == true">
+        <ion-input type="text" placeholder="No of Carton"  [(ngModel)]="Data.NoCarton"></ion-input>
+      </ion-item>
+  
+
+      <ion-item class="form1">
+        <ion-label>Purpose</ion-label>
+        <ion-select interface="popover"  [(ngModel)]="data.Purpose" >
+            <ion-option value="recieve" selected="true">Recieve F/G</ion-option>
+            <ion-option value="Send">Send Fabric</ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item class="form1" >
+        <ion-input type="text" placeholder="Contact Person"  [(ngModel)]="data.contact"></ion-input>
+      </ion-item>
+      <ion-item class="form1" *ngIf="scannedCode" [(ngModel)]="Data.code">
+        <ion-label>Result from Scan : {{scannedCode}}</ion-label>
+      </ion-item>
+      <div class="btn02" *ngIf ="!scannedCode">
+        <button ion-button block (click)="scanCode()">scan</button>
+      </div> 
+      <!-- <ion-card *ngIf="scannedCode">
+        <ion-card-content>
+          Result from Scan: {{scannedCode}}
+        </ion-card-content>
+      </ion-card> -->
+      <div class="btn02" *ngIf="scannedCode">
+        <button ion-button block (click)="Save()">Save</button>
+      </div> 
   </ion-grid>
 </ion-content>
